@@ -21,6 +21,8 @@ public class FiveThreeOneController {
 
     @RequestMapping(path="/", method= RequestMethod.GET)
     public String home(HttpSession session, Model model) {
+
+        model.addAttribute("person", person)
         return "home";
     }
 }
