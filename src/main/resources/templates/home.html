@@ -11,7 +11,16 @@
 <form action="/logout" method="post">
     <button type="submit">Logout</button>
 </form>
+<form action="/addMax" method="post">
+    <input type="number" placeholder="Bench Max" name="bench"/>
+    <input type="number" placeholder="Shoulder Press Max" name="shoulderPress"/>
+    <input type="number" placeholder="Squat Max" name="squat"/>
+    <input type="number" placeholder="Dead Lift Max" name="deadLift"/>
+    <button type="submit">Calculate</button>
+</form>
 {{/person}}
-
+{{#calculations}}
+{{wkOneB}}
+{{/calculations}}
 </body>
 </html>
