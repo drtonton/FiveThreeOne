@@ -21,8 +21,7 @@ public class Max {
     @ManyToOne
     Person person;
 
-    public Max(int id, int bench, int squat, int shoulderPress, int deadLift, Person person) {
-        this.id = id;
+    public Max(int bench, int squat, int shoulderPress, int deadLift, Person person) {
         this.bench = bench;
         this.squat = squat;
         this.shoulderPress = shoulderPress;

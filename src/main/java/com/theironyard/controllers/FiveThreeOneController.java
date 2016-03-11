@@ -1,6 +1,7 @@
 package com.theironyard.controllers;
 
 import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
+import com.theironyard.entities.Max;
 import com.theironyard.entities.Person;
 import com.theironyard.services.MaxRepository;
 import com.theironyard.services.PersonRepository;
@@ -49,4 +50,13 @@ public class FiveThreeOneController {
         session.invalidate();
         return "redirect:/";
     }
+    @RequestMapping(path = "/addMax", method = RequestMethod.POST)
+    public String addMax(HttpSession session, int bench, int squat, int shoulderPress, int deadLift) {
+        String userName = (String) session.getAttribute("userName");
+        Person person = personRepository.findFirstByUserName(userName);
+        Max max = new Max(bench, squat, shoulderPress, deadLift, person);
+        maxRepository.save(max);
+        return "redirect:/";
+    }
+    @RequestMapping(path = "/")
 }
