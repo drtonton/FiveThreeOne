@@ -31,7 +31,31 @@ public class FiveThreeOneController {
     public String home(HttpSession session, Model model, int id) {
         String userName = (String) session.getAttribute("userName");
         Person person = personRepository.findFirstByUserName(userName);
+        HashMap calculations = new HashMap();
+        if (person != null) {
+            Max max = maxRepository.findFirstByPerson(person);
+            calculations.put("wkOneB", weekOne(max.getBench()));
+            calculations.put("wkOneSP", weekOne(max.getShoulderPress()));
+            calculations.put("wkOneS", weekOne(max.getSquat()));
+            calculations.put("wkOneDL", weekOne(max.getDeadLift()));
+
+            calculations.put("wkTwoB", weekTwo(max.getBench()));
+            calculations.put("wkTwoSP", weekTwo(max.getShoulderPress()));
+            calculations.put("wkTwoS", weekTwo(max.getSquat()));
+            calculations.put("wkTwoDL", weekTwo(max.getDeadLift()));
+
+            calculations.put("wkThreeB", weekThree(max.getBench()));
+            calculations.put("wkThreeSP", weekThree(max.getShoulderPress()));
+            calculations.put("wkThreeS", weekThree(max.getSquat()));
+            calculations.put("wkThreeDL", weekThree(max.getDeadLift()));
+
+            calculations.put("wkFourB", weekFour(max.getBench()));
+            calculations.put("wkFourSP", weekFour(max.getShoulderPress()));
+            calculations.put("wkFourS", weekFour(max.getSquat()));
+            calculations.put("wkFourDL", weekFour(max.getDeadLift()));
+        }
         model.addAttribute("person", person);
+        model.addAttribute("calculated", calculations);
         return "home";
     }
     @RequestMapping(path = "/login", method = RequestMethod.POST)

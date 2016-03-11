@@ -31,4 +31,20 @@ public class Max {
 
     public Max() {
     }
+
+    public int getBench() {
+        return bench;
+    }
+
+    public int getSquat() {
+        return squat;
+    }
+
+    public int getShoulderPress() {
+        return shoulderPress;
+    }
+
+    public int getDeadLift() {
+        return deadLift;
+    }
 }
