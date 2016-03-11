@@ -44,4 +44,9 @@ public class FiveThreeOneController {
         session.setAttribute("userName", userName);
         return "redirect:/";
     }
+    @RequestMapping(path ="/logout", method = RequestMethod.POST)
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
 }

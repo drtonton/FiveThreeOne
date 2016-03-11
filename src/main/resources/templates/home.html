@@ -7,6 +7,10 @@
     <button type="submit">Login</button>
 </form>
 {{/person}}
-
+{{#person}}
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+{{/person}}
 </body>
 </html>
