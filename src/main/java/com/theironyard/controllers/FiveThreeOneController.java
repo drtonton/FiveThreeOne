@@ -28,34 +28,80 @@ public class FiveThreeOneController {
     PersonRepository personRepository;
 
     @RequestMapping(path ="/", method = RequestMethod.GET)
-    public String home(HttpSession session, Model model, int id) {
+    public String home(HttpSession session, Model model) {
         String userName = (String) session.getAttribute("userName");
         Person person = personRepository.findFirstByUserName(userName);
         HashMap calculations = new HashMap();
-        if (person != null) {
-            Max max = maxRepository.findFirstByPerson(person);
-            calculations.put("wkOneB", weekOne(max.getBench()));
-            calculations.put("wkOneSP", weekOne(max.getShoulderPress()));
-            calculations.put("wkOneS", weekOne(max.getSquat()));
-            calculations.put("wkOneDL", weekOne(max.getDeadLift()));
+        Max max = maxRepository.findFirstByPerson(person);
+        if (person != null && max != null) {
+            // wk1s1B == week one, set one, Bench
+            calculations.put("wk1s1B", weekOne(max.getBench()).get(0));
+            calculations.put("wk1s2B", weekOne(max.getBench()).get(1));
+            calculations.put("wk1s3B", weekOne(max.getBench()).get(2));
 
-            calculations.put("wkTwoB", weekTwo(max.getBench()));
-            calculations.put("wkTwoSP", weekTwo(max.getShoulderPress()));
-            calculations.put("wkTwoS", weekTwo(max.getSquat()));
-            calculations.put("wkTwoDL", weekTwo(max.getDeadLift()));
+            calculations.put("wk1s1SP", weekOne(max.getShoulderPress()).get(0));
+            calculations.put("wk1s2SP", weekOne(max.getShoulderPress()).get(1));
+            calculations.put("wk1s3SP", weekOne(max.getShoulderPress()).get(2));
 
-            calculations.put("wkThreeB", weekThree(max.getBench()));
-            calculations.put("wkThreeSP", weekThree(max.getShoulderPress()));
-            calculations.put("wkThreeS", weekThree(max.getSquat()));
-            calculations.put("wkThreeDL", weekThree(max.getDeadLift()));
+            calculations.put("wk1s1S", weekOne(max.getSquat()).get(0));
+            calculations.put("wk1s2S", weekOne(max.getSquat()).get(1));
+            calculations.put("wk1s3S", weekOne(max.getSquat()).get(2));
 
-            calculations.put("wkFourB", weekFour(max.getBench()));
-            calculations.put("wkFourSP", weekFour(max.getShoulderPress()));
-            calculations.put("wkFourS", weekFour(max.getSquat()));
-            calculations.put("wkFourDL", weekFour(max.getDeadLift()));
+            calculations.put("wk1s1D", weekOne(max.getDeadLift()).get(0));
+            calculations.put("wk1s2D", weekOne(max.getDeadLift()).get(1));
+            calculations.put("wk1s3D", weekOne(max.getDeadLift()).get(2));
+
+            calculations.put("wk2s1B", weekTwo(max.getBench()).get(0));
+            calculations.put("wk2s2B", weekTwo(max.getBench()).get(1));
+            calculations.put("wk2s3B", weekTwo(max.getBench()).get(2));
+
+            calculations.put("wk2s1SP", weekTwo(max.getShoulderPress()).get(0));
+            calculations.put("wk2s2SP", weekTwo(max.getShoulderPress()).get(1));
+            calculations.put("wk2s3SP", weekTwo(max.getShoulderPress()).get(2));
+
+            calculations.put("wk2s1S", weekTwo(max.getSquat()).get(0));
+            calculations.put("wk2s2S", weekTwo(max.getSquat()).get(1));
+            calculations.put("wk2s3S", weekTwo(max.getSquat()).get(2));
+
+            calculations.put("wk2s1D", weekTwo(max.getDeadLift()).get(0));
+            calculations.put("wk2s2D", weekTwo(max.getDeadLift()).get(1));
+            calculations.put("wk2s3D", weekTwo(max.getDeadLift()).get(2));
+
+            calculations.put("wk3s1B", weekThree(max.getBench()).get(0));
+            calculations.put("wk3s2B", weekThree(max.getBench()).get(1));
+            calculations.put("wk3s3B", weekThree(max.getBench()).get(2));
+
+            calculations.put("wk3s1SP", weekThree(max.getShoulderPress()).get(0));
+            calculations.put("wk3s2SP", weekThree(max.getShoulderPress()).get(1));
+            calculations.put("wk3s3SP", weekThree(max.getShoulderPress()).get(2));
+
+            calculations.put("wk3s1S", weekThree(max.getSquat()).get(0));
+            calculations.put("wk3s2S", weekThree(max.getSquat()).get(1));
+            calculations.put("wk3s3S", weekThree(max.getSquat()).get(2));
+
+            calculations.put("wk3s1D", weekThree(max.getDeadLift()).get(0));
+            calculations.put("wk3s2D", weekThree(max.getDeadLift()).get(1));
+            calculations.put("wk3s3D", weekThree(max.getDeadLift()).get(2));
+
+            calculations.put("wk4s1B", weekFour(max.getBench()).get(0));
+            calculations.put("wk4s2B", weekFour(max.getBench()).get(1));
+            calculations.put("wk4s3B", weekFour(max.getBench()).get(2));
+
+            calculations.put("wk4s1SP", weekFour(max.getShoulderPress()).get(0));
+            calculations.put("wk4s2SP", weekFour(max.getShoulderPress()).get(1));
+            calculations.put("wk4s3SP", weekFour(max.getShoulderPress()).get(2));
+
+            calculations.put("wk4s1S", weekFour(max.getSquat()).get(0));
+            calculations.put("wk4s2S", weekFour(max.getSquat()).get(1));
+            calculations.put("wk4s3S", weekFour(max.getSquat()).get(2));
+
+            calculations.put("wk4s1D", weekFour(max.getDeadLift()).get(0));
+            calculations.put("wk4s2D", weekFour(max.getDeadLift()).get(1));
+            calculations.put("wk4s3D", weekFour(max.getDeadLift()).get(2));
+
+            model.addAttribute("calculated", calculations);
         }
         model.addAttribute("person", person);
-        model.addAttribute("calculated", calculations);
         return "home";
     }
     @RequestMapping(path = "/login", method = RequestMethod.POST)

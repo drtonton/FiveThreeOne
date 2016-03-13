@@ -19,8 +19,12 @@
     <button type="submit">Calculate</button>
 </form>
 {{/person}}
-{{#calculations}}
-{{wkOneB}}
-{{/calculations}}
+{{#calculated}}
+<table style="width:100%">
+<tr> <th>Week One</th> </tr>
+<tr> <th>Bench</th> <th>Shoulder Press</th> <th>Squat</th> <th>Dead Lift</th> </tr>
+    <tr> <td>{{test}}</td></tr>
+</table>
+{{/calculated}}
 </body>
 </html>
