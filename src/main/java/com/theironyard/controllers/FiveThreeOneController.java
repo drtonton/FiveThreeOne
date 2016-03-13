@@ -35,69 +35,69 @@ public class FiveThreeOneController {
         Max max = maxRepository.findFirstByPerson(person);
         if (person != null && max != null) {
             // wk1s1B == week one, set one, Bench
-            calculations.put("wk1s1B", weekOne(max.getBench()).get(0));
-            calculations.put("wk1s2B", weekOne(max.getBench()).get(1));
-            calculations.put("wk1s3B", weekOne(max.getBench()).get(2));
+            calculations.put("benchA1", weekOne(max.getBench()).get(0));
+            calculations.put("benchA2", weekOne(max.getBench()).get(1));
+            calculations.put("benchA3", weekOne(max.getBench()).get(2));
 
-            calculations.put("wk1s1SP", weekOne(max.getShoulderPress()).get(0));
-            calculations.put("wk1s2SP", weekOne(max.getShoulderPress()).get(1));
-            calculations.put("wk1s3SP", weekOne(max.getShoulderPress()).get(2));
+            calculations.put("pressA1", weekOne(max.getShoulderPress()).get(0));
+            calculations.put("pressA2", weekOne(max.getShoulderPress()).get(1));
+            calculations.put("pressA3", weekOne(max.getShoulderPress()).get(2));
 
-            calculations.put("wk1s1S", weekOne(max.getSquat()).get(0));
-            calculations.put("wk1s2S", weekOne(max.getSquat()).get(1));
-            calculations.put("wk1s3S", weekOne(max.getSquat()).get(2));
+            calculations.put("squatA1", weekOne(max.getSquat()).get(0));
+            calculations.put("squatA2", weekOne(max.getSquat()).get(1));
+            calculations.put("squatA3", weekOne(max.getSquat()).get(2));
 
-            calculations.put("wk1s1D", weekOne(max.getDeadLift()).get(0));
-            calculations.put("wk1s2D", weekOne(max.getDeadLift()).get(1));
-            calculations.put("wk1s3D", weekOne(max.getDeadLift()).get(2));
+            calculations.put("liftA1", weekOne(max.getDeadLift()).get(0));
+            calculations.put("liftA2", weekOne(max.getDeadLift()).get(1));
+            calculations.put("liftA3", weekOne(max.getDeadLift()).get(2));
 
-            calculations.put("wk2s1B", weekTwo(max.getBench()).get(0));
-            calculations.put("wk2s2B", weekTwo(max.getBench()).get(1));
-            calculations.put("wk2s3B", weekTwo(max.getBench()).get(2));
+            calculations.put("benchB1", weekTwo(max.getBench()).get(0));
+            calculations.put("benchB2", weekTwo(max.getBench()).get(1));
+            calculations.put("benchB3", weekTwo(max.getBench()).get(2));
 
-            calculations.put("wk2s1SP", weekTwo(max.getShoulderPress()).get(0));
-            calculations.put("wk2s2SP", weekTwo(max.getShoulderPress()).get(1));
-            calculations.put("wk2s3SP", weekTwo(max.getShoulderPress()).get(2));
+            calculations.put("pressB1", weekTwo(max.getShoulderPress()).get(0));
+            calculations.put("pressB2", weekTwo(max.getShoulderPress()).get(1));
+            calculations.put("pressB3", weekTwo(max.getShoulderPress()).get(2));
 
-            calculations.put("wk2s1S", weekTwo(max.getSquat()).get(0));
-            calculations.put("wk2s2S", weekTwo(max.getSquat()).get(1));
-            calculations.put("wk2s3S", weekTwo(max.getSquat()).get(2));
+            calculations.put("squatB1", weekTwo(max.getSquat()).get(0));
+            calculations.put("squatB2", weekTwo(max.getSquat()).get(1));
+            calculations.put("squatB3", weekTwo(max.getSquat()).get(2));
 
-            calculations.put("wk2s1D", weekTwo(max.getDeadLift()).get(0));
-            calculations.put("wk2s2D", weekTwo(max.getDeadLift()).get(1));
-            calculations.put("wk2s3D", weekTwo(max.getDeadLift()).get(2));
+            calculations.put("liftB1", weekTwo(max.getDeadLift()).get(0));
+            calculations.put("liftB2", weekTwo(max.getDeadLift()).get(1));
+            calculations.put("liftB3", weekTwo(max.getDeadLift()).get(2));
 
-            calculations.put("wk3s1B", weekThree(max.getBench()).get(0));
-            calculations.put("wk3s2B", weekThree(max.getBench()).get(1));
-            calculations.put("wk3s3B", weekThree(max.getBench()).get(2));
+            calculations.put("benchC1", weekThree(max.getBench()).get(0));
+            calculations.put("benchC2", weekThree(max.getBench()).get(1));
+            calculations.put("benchC3", weekThree(max.getBench()).get(2));
 
-            calculations.put("wk3s1SP", weekThree(max.getShoulderPress()).get(0));
-            calculations.put("wk3s2SP", weekThree(max.getShoulderPress()).get(1));
-            calculations.put("wk3s3SP", weekThree(max.getShoulderPress()).get(2));
+            calculations.put("pressC1", weekThree(max.getShoulderPress()).get(0));
+            calculations.put("pressC2", weekThree(max.getShoulderPress()).get(1));
+            calculations.put("pressC3", weekThree(max.getShoulderPress()).get(2));
 
-            calculations.put("wk3s1S", weekThree(max.getSquat()).get(0));
-            calculations.put("wk3s2S", weekThree(max.getSquat()).get(1));
-            calculations.put("wk3s3S", weekThree(max.getSquat()).get(2));
+            calculations.put("squatC1", weekThree(max.getSquat()).get(0));
+            calculations.put("squatC2", weekThree(max.getSquat()).get(1));
+            calculations.put("squatC3", weekThree(max.getSquat()).get(2));
 
-            calculations.put("wk3s1D", weekThree(max.getDeadLift()).get(0));
-            calculations.put("wk3s2D", weekThree(max.getDeadLift()).get(1));
-            calculations.put("wk3s3D", weekThree(max.getDeadLift()).get(2));
+            calculations.put("liftC1", weekThree(max.getDeadLift()).get(0));
+            calculations.put("liftC2", weekThree(max.getDeadLift()).get(1));
+            calculations.put("liftC3", weekThree(max.getDeadLift()).get(2));
 
-            calculations.put("wk4s1B", weekFour(max.getBench()).get(0));
-            calculations.put("wk4s2B", weekFour(max.getBench()).get(1));
-            calculations.put("wk4s3B", weekFour(max.getBench()).get(2));
+            calculations.put("benchD1", weekFour(max.getBench()).get(0));
+            calculations.put("benchD2", weekFour(max.getBench()).get(1));
+            calculations.put("benchD3", weekFour(max.getBench()).get(2));
 
-            calculations.put("wk4s1SP", weekFour(max.getShoulderPress()).get(0));
-            calculations.put("wk4s2SP", weekFour(max.getShoulderPress()).get(1));
-            calculations.put("wk4s3SP", weekFour(max.getShoulderPress()).get(2));
+            calculations.put("pressD1", weekFour(max.getShoulderPress()).get(0));
+            calculations.put("pressD2", weekFour(max.getShoulderPress()).get(1));
+            calculations.put("pressD3", weekFour(max.getShoulderPress()).get(2));
 
-            calculations.put("wk4s1S", weekFour(max.getSquat()).get(0));
-            calculations.put("wk4s2S", weekFour(max.getSquat()).get(1));
-            calculations.put("wk4s3S", weekFour(max.getSquat()).get(2));
+            calculations.put("squatD1", weekFour(max.getSquat()).get(0));
+            calculations.put("squatD2", weekFour(max.getSquat()).get(1));
+            calculations.put("squatD3", weekFour(max.getSquat()).get(2));
 
-            calculations.put("wk4s1D", weekFour(max.getDeadLift()).get(0));
-            calculations.put("wk4s2D", weekFour(max.getDeadLift()).get(1));
-            calculations.put("wk4s3D", weekFour(max.getDeadLift()).get(2));
+            calculations.put("liftD1", weekFour(max.getDeadLift()).get(0));
+            calculations.put("liftD2", weekFour(max.getDeadLift()).get(1));
+            calculations.put("liftD3", weekFour(max.getDeadLift()).get(2));
 
             model.addAttribute("calculated", calculations);
         }
