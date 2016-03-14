@@ -127,7 +127,14 @@ public class FiveThreeOneController {
         String userName = (String) session.getAttribute("userName");
         Person person = personRepository.findFirstByUserName(userName);
         Max max = new Max(bench, squat, shoulderPress, deadLift, person);
-        maxRepository.save(max);
+        if (maxRepository.findFirstByPerson(person) == null) {
+            maxRepository.save(max);
+        }
+        else{
+            Max oldMax = maxRepository.findFirstByPerson(person);
+            maxRepository.delete(oldMax);
+            maxRepository.save(max);
+        }
         return "redirect:/";
     }
     static ArrayList<Integer> weekOne (int amt) {
