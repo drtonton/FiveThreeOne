@@ -34,7 +34,6 @@ public class FiveThreeOneController {
         HashMap calculations = new HashMap();
         Max max = maxRepository.findFirstByPerson(person);
         if (person != null && max != null) {
-            // wk1s1B == week one, set one, Bench
             calculations.put("benchA1", weekOne(max.getBench()).get(0));
             calculations.put("benchA2", weekOne(max.getBench()).get(1));
             calculations.put("benchA3", weekOne(max.getBench()).get(2));
@@ -123,20 +122,30 @@ public class FiveThreeOneController {
         return "redirect:/";
     }
     @RequestMapping(path = "/addMax", method = RequestMethod.POST)
-    public String addMax(HttpSession session, int bench, int squat, int shoulderPress, int deadLift) {
+    public String addMax(HttpSession session, int bench, int squat, int shoulderPress, int deadLift) throws Exception {
         String userName = (String) session.getAttribute("userName");
         Person person = personRepository.findFirstByUserName(userName);
         Max max = new Max(bench, squat, shoulderPress, deadLift, person);
-        if (maxRepository.findFirstByPerson(person) == null) {
-            maxRepository.save(max);
+        if (bench >= 1 && squat >= 1 && shoulderPress >= 1 && deadLift >= 1) {
+            if (maxRepository.findFirstByPerson(person) == null) {
+                maxRepository.save(max);
+            } else {
+                Max oldMax = maxRepository.findFirstByPerson(person);
+                maxRepository.delete(oldMax);
+                maxRepository.save(max);
+            }
         }
-        else{
-            Max oldMax = maxRepository.findFirstByPerson(person);
-            maxRepository.delete(oldMax);
-            maxRepository.save(max);
+        else if (bench <= 1 || squat <= 1 || shoulderPress <= 1 || deadLift <= 1) {
+            throw new Exception("ALL FIELDS MUST BE ENTERED");
         }
         return "redirect:/";
     }
+    @RequestMapping(path = "/addNote", method = RequestMethod.POST)
+    public String addNote(HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+
+    }
+
     static ArrayList<Integer> weekOne (int amt) {
         int a1 = (int) Math.round(amt*.65);
         int a2 = (int) Math.round(amt*.75);
