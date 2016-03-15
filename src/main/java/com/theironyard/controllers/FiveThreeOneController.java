@@ -9,6 +9,8 @@ import com.theironyard.services.NoteRepository;
 import com.theironyard.services.PersonRepository;
 import com.theironyard.utils.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +37,10 @@ public class FiveThreeOneController {
     NoteRepository noteRepository;
 
     @RequestMapping(path ="/", method = RequestMethod.GET)
-    public String home(HttpSession session, Model model, Pageable pageable) {
+    public String home(HttpSession session, Model model, Integer page) {
+        page = (page == null) ? 0 : page;
+        PageRequest pr = new PageRequest(page, 5);
+        Page<Note> p;
         String userName = (String) session.getAttribute("userName");
         Person person = personRepository.findFirstByUserName(userName);
         HashMap calculations = new HashMap();
@@ -155,8 +160,13 @@ public class FiveThreeOneController {
 //            }
             model.addAttribute("calculated", calculations);
         }
-        if (noteRepository.findByPerson(person, pageable) != null) {
-            model.addAttribute("note", noteRepository.findByPerson(person, pageable));
+        if (noteRepository.findByPerson(person, pr) != null) {
+            p = noteRepository.findByPerson(person, pr);
+            model.addAttribute("note", p);
+            model.addAttribute("nextPage", page+1);
+            model.addAttribute("showNext", p.hasNext());
+            model.addAttribute("prevPage", page-1);
+            model.addAttribute("showPrev", p.hasPrevious());
         }
         model.addAttribute("person", person);
         return "home";

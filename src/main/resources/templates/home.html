@@ -51,16 +51,29 @@
 </table>
 <br>
 {{/calculated}}
+{{#person}}
 <form action="/addNote" method="post">
     <input type="text" placeholder="Add a note" name="text"/>
     <button type="submit">Submit</button>
 </form>
 
 <ol>
+
     {{#note}}
     <li>{{text}}</li>
     {{/note}}
+
 </ol>
 
+
+{{#showNext}}
+<a href="/?page={{nextPage}}">Next</a>
+{{/showNext}}
+{{#showPrev}}
+<a href="/?page={{prevPage}}">Previous</a>
+{{/showPrev}}
+
+
+{{/person}}
 </body>
 </html>
