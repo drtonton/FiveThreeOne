@@ -9,6 +9,7 @@ import com.theironyard.services.NoteRepository;
 import com.theironyard.services.PersonRepository;
 import com.theironyard.utils.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class FiveThreeOneController {
     NoteRepository noteRepository;
 
     @RequestMapping(path ="/", method = RequestMethod.GET)
-    public String home(HttpSession session, Model model) {
+    public String home(HttpSession session, Model model, Pageable pageable) {
         String userName = (String) session.getAttribute("userName");
         Person person = personRepository.findFirstByUserName(userName);
         HashMap calculations = new HashMap();
@@ -154,8 +155,8 @@ public class FiveThreeOneController {
 //            }
             model.addAttribute("calculated", calculations);
         }
-        if (noteRepository.findByPerson(person) != null) {
-            model.addAttribute("note", noteRepository.findByPerson(person));
+        if (noteRepository.findByPerson(person, pageable) != null) {
+            model.addAttribute("note", noteRepository.findByPerson(person, pageable));
         }
         model.addAttribute("person", person);
         return "home";
