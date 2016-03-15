@@ -50,5 +50,16 @@
     <tr> <td>5 x {{benchD3}}</td> <td>5 x {{pressD3}}</td> <td>5 x {{squatD3}}</td> <td>5 x {{liftD3}}</td></tr>
 </table>
 {{/calculated}}
+<form action="/addNote" method="post">
+    <input type="text" placeholder="Add a note" name="text"/>
+    <button type="submit">Submit</button>
+</form>
+
+<ol>
+    {{#note}}
+    <li>{{text}}</li>
+    {{/note}}
+</ol>
+
 </body>
 </html>
