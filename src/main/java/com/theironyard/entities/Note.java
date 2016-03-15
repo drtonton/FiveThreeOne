@@ -17,8 +17,12 @@ public class Note {
     @Column(nullable = false)
     String text;
 
-    public Note(String text) {
+    @ManyToOne
+    Person person;
+
+    public Note(String text, Person person) {
         this.text = text;
+        this.person = person;
     }
 
     public Note() {
